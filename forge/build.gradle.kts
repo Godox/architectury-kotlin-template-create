@@ -31,10 +31,11 @@ configurations {
 
 repositories {
     // KFF
-    maven {
-        name = "Kotlin for Forge"
-        setUrl("https://thedarkcolour.github.io/KotlinForForge/")
-    }
+    maven("https://thedarkcolour.github.io/KotlinForForge/") { name = "Kotlin for Forge" }
+    maven("https://maven.createmod.net") // Create, Ponder, Flywheel
+    maven("https://mvn.devos.one/snapshots") // Registrate
+    maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") // ForgeConfigAPIPort
+
 }
 
 dependencies {
@@ -47,6 +48,11 @@ dependencies {
 
     // Kotlin For Forge
     implementation("thedarkcolour:kotlinforforge:${rootProject.property("kotlin_for_forge_version")}")
+
+    modImplementation("com.simibubi.create:create-${rootProject.property("minecraft_version")}:${rootProject.property("create_forge_version")}:slim") { isTransitive = false }
+    modImplementation("com.tterrag.registrate:Registrate:${rootProject.property("registrate_forge_version")}")
+    modImplementation("com.jozufozu.flywheel:flywheel-forge-${rootProject.property("flywheel_forge_minecraft_version")}:${rootProject.property("flywheel_forge_version")}")
+
 }
 
 tasks.processResources {
@@ -61,7 +67,8 @@ tasks.processResources {
             "mod_id" to rootProject.property("mod_id"),
             "minecraft_version" to rootProject.property("minecraft_version"),
             "architectury_version" to rootProject.property("architectury_version"),
-            "kotlin_for_forge_version" to rootProject.property("kotlin_for_forge_version")
+            "kotlin_for_forge_version" to rootProject.property("kotlin_for_forge_version"),
+            "create_forge_version" to rootProject.property("create_forge_version")
         ))
     }
 }

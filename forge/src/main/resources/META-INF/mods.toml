@@ -40,3 +40,10 @@ mandatory = true
 versionRange = "[${kotlin_for_forge_version}]"
 ordering = "AFTER"
 side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId="create"
+mandatory=true
+versionRange="[${create_forge_version}]"
+ordering="NONE"
+side="BOTH"

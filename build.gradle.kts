@@ -3,8 +3,8 @@ import net.fabricmc.loom.api.LoomGradleExtensionAPI
 plugins {
     java
     kotlin("jvm") version "1.8.22"
-    id("architectury-plugin") version "3.4-SNAPSHOT"
-    id("dev.architectury.loom") version "1.2-SNAPSHOT" apply false
+    id("architectury-plugin") version "3.4.+"
+    id("dev.architectury.loom") version "1.7.+" apply false
     id("com.github.johnrengelman.shadow") version "8.1.1" apply false
 }
 
@@ -41,11 +41,11 @@ allprojects {
     group = rootProject.property("maven_group").toString()
 
     repositories {
-        // Add repositories to retrieve artifacts from in here.
-        // You should only use this when depending on other mods because
-        // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-        // See https://docs.gradle.org/current/userguide/declaring_repositories.html
-        // for more information about repositories.
+        maven("https://maven.parchmentmc.org") // Parchment mappings
+
+        // mavens used on both forge and fabric
+        maven("https://maven.blamejared.com/") // JEI
+        maven("https://maven.tterrag.com/") // Flywheel on both, Create and Registrate on forge
     }
 
     dependencies {
